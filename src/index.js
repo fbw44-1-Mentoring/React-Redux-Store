@@ -13,7 +13,7 @@ const initialState={
 //create reducer function
 const Reducer=(state=initialState, action /* actions means instructions */)=>{
     console.log(action)
-    if(action.type==="increment"){
+   /*  if(action.type==="increment"){
      state.number++;
      return state
     }
@@ -21,7 +21,26 @@ const Reducer=(state=initialState, action /* actions means instructions */)=>{
         state.number--;
         return state
     }
-    return state
+    if(action.type==="changecolor"){
+        state.color="green"
+        return state
+    }
+     return state
+      */
+     switch(action.type){
+         case "increment":
+             return {...state , number: state.number + action.payload }
+         case "decrement":
+            return {...state, number: state.number- action.payload}
+         case "changeColor":
+             return { ...state, color: "green"}
+        case "additem":
+            return { ...state, tasks: [...state.tasks, action.payload]}
+        default: 
+            return state
+     }
+
+   
 }
 
 
@@ -32,9 +51,9 @@ reactDOM.render(<Provider store= {mystore} > <App/>  </Provider>    ,document.ge
 
 
 // install redux and react-redux
-// create your initial state
+// create your GlobalState/ initial state
 // create Reducer function
 // create your redux store
-// connect/wrap your react application using Provider Tag
+// connect/wrap your react application using Provider Tag from react-redux
 
 {/* <MyContext.Provider value= {{number, color}}> <App/> </MyContext.Provider> */}
